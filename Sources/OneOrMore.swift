@@ -108,12 +108,21 @@ extension OneOrMore: MutableCollection {
         return i + 1
     }
 
+    /// Returns a `OneOrMore` containing the results of mapping the given closure over `self`.
+    public func map<T>(_ transform: @noescape (Element) throws -> T) rethrows -> OneOrMore<T> {
+        return OneOrMore<T>(first: try transform(first), rest: try rest.map(transform))
+    }
+
 }
 
 #else
 
 extension OneOrMore: MutableCollectionType {
 
+    /// Returns a `OneOrMore` containing the results of mapping the given closure over `self`.
+    public func map<T>(@noescape transform: (Element) throws -> T) rethrows -> OneOrMore<T> {
+        return OneOrMore<T>(first: try transform(first), rest: try rest.map(transform))
+    }
     
 }
 
