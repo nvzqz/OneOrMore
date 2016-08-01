@@ -6,6 +6,13 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5281CC991D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CC981D4EF9AF00CCB7F1 /* OneOrMore.swift */; };
+		5281CC9A1D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CC981D4EF9AF00CCB7F1 /* OneOrMore.swift */; };
+		5281CC9B1D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CC981D4EF9AF00CCB7F1 /* OneOrMore.swift */; };
+		5281CC9C1D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CC981D4EF9AF00CCB7F1 /* OneOrMore.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		5281CC521D4EF77500CCB7F1 /* OneOrMore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneOrMore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5281CC601D4EF78100CCB7F1 /* OneOrMore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneOrMore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -13,6 +20,7 @@
 		5281CC871D4EF7C800CCB7F1 /* OneOrMore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneOrMore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5281CC911D4EF86000CCB7F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = OneOrMore.xcodeproj/Info.plist; sourceTree = "<group>"; };
 		5281CC971D4EF98800CCB7F1 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		5281CC981D4EF9AF00CCB7F1 /* OneOrMore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneOrMore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,7 @@
 		5281CC8F1D4EF82000CCB7F1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5281CC981D4EF9AF00CCB7F1 /* OneOrMore.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -201,24 +210,28 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = D97BP28TP2;
 						DevelopmentTeamName = "Nikolai Vazquez (Personal Team)";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					5281CC5F1D4EF78100CCB7F1 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = D97BP28TP2;
 						DevelopmentTeamName = "Nikolai Vazquez (Personal Team)";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					5281CC791D4EF7BF00CCB7F1 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = D97BP28TP2;
 						DevelopmentTeamName = "Nikolai Vazquez (Personal Team)";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					5281CC861D4EF7C800CCB7F1 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = D97BP28TP2;
 						DevelopmentTeamName = "Nikolai Vazquez (Personal Team)";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -279,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5281CC991D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5281CC9A1D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5281CC9B1D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5281CC9C1D4EF9AF00CCB7F1 /* OneOrMore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
