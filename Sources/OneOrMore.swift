@@ -26,7 +26,7 @@
 //
 
 /// A collection of one or more `Element`.
-public struct OneOrMore<Element>: Collection {
+public struct OneOrMore<Element> {
 
     /// The first element.
     public var first: Element
@@ -48,11 +48,6 @@ public struct OneOrMore<Element>: Collection {
     /// greater than the last valid subscript argument.
     public var endIndex: Int {
         return Swift.max(1, rest.endIndex)
-    }
-
-    /// Returns the index after `i`.
-    public func index(after i: Int) -> Int {
-        return i + 1
     }
 
     /// Creates an instance with `first` and `rest`.
@@ -92,3 +87,23 @@ public struct OneOrMore<Element>: Collection {
     }
 
 }
+
+#if swift(>=3)
+
+extension OneOrMore: Collection {
+
+    /// Returns the index after `i`.
+    public func index(after i: Int) -> Int {
+        return i + 1
+    }
+
+}
+
+#else
+
+extension OneOrMore: CollectionType {
+
+    
+}
+
+#endif
