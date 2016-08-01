@@ -26,7 +26,7 @@
 //
 
 /// A collection of one or more `Element`.
-public struct OneOrMore<Element> {
+public struct OneOrMore<Element>: CustomStringConvertible {
 
     /// The first element.
     public var first: Element
@@ -48,6 +48,17 @@ public struct OneOrMore<Element> {
     /// greater than the last valid subscript argument.
     public var endIndex: Int {
         return Swift.max(1, rest.endIndex)
+    }
+
+    /// A textual representation of this instance.
+    public var description: String {
+        let elements = lazy.map(String.init(reflecting:))
+        #if swift(>=3)
+            let joined = elements.joined(separator: ", ")
+        #else
+            let joined = elements.joinWithSeparator(", ")
+        #endif
+        return "[\(joined)]"
     }
 
     /// Creates an instance with `first` and `rest`.
