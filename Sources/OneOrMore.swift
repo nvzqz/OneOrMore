@@ -47,7 +47,7 @@ public struct OneOrMore<Element>: CustomStringConvertible {
     /// The collection's "past the end" position---that is, the position one
     /// greater than the last valid subscript argument.
     public var endIndex: Int {
-        return Swift.max(1, rest.endIndex)
+        return rest.endIndex + 1
     }
 
     /// A textual representation of this instance.
