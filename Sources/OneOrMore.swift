@@ -26,7 +26,7 @@
 //
 
 /// A collection of one or more `Element`.
-public struct OneOrMore<Element> {
+public struct OneOrMore<Element>: Collection {
 
     /// The first element.
     public var first: Element
@@ -37,6 +37,22 @@ public struct OneOrMore<Element> {
     /// The last element.
     public var last: Element {
         return rest.last ?? first
+    }
+
+    /// The position of the first element.
+    public var startIndex: Int {
+        return 0
+    }
+
+    /// The collection's "past the end" position---that is, the position one
+    /// greater than the last valid subscript argument.
+    public var endIndex: Int {
+        return Swift.max(1, rest.endIndex)
+    }
+
+    /// Returns the index after `i`.
+    public func index(after i: Int) -> Int {
+        return i + 1
     }
 
     /// Creates an instance with `first` and `rest`.
@@ -53,6 +69,26 @@ public struct OneOrMore<Element> {
     /// Creates an instance with `first` and `rest`.
     public init(_ first: Element, _ rest: Element...) {
         self.init(first: first, rest: rest)
+    }
+
+    /// Accesses the element at the specified position.
+    public subscript(position: Int) -> Element {
+        @inline(__always)
+        get {
+            if position == 0 {
+                return first
+            } else {
+                return rest[position - 1]
+            }
+        }
+        @inline(__always)
+        set {
+            if position == 0 {
+                first = newValue
+            } else {
+                rest[position - 1] = newValue
+            }
+        }
     }
 
 }
