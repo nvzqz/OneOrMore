@@ -113,6 +113,12 @@ extension OneOrMore: MutableCollection {
         return OneOrMore<T>(first: try transform(first), rest: try rest.map(transform))
     }
 
+    /// Returns the elements of the collection, sorted using the given predicate as the comparison between elements.
+    public func sorted(isOrderedBefore: @noescape (Element, Element) -> Bool) -> OneOrMore<Element> {
+        let sorted: Array = self.sorted(isOrderedBefore: isOrderedBefore)
+        return OneOrMore(first: sorted[0], rest: Array(sorted[1 ..< sorted.endIndex]))
+    }
+
 }
 
 #else
@@ -122,6 +128,12 @@ extension OneOrMore: MutableCollectionType {
     /// Returns a `OneOrMore` containing the results of mapping the given closure over `self`.
     public func map<T>(@noescape transform: (Element) throws -> T) rethrows -> OneOrMore<T> {
         return OneOrMore<T>(first: try transform(first), rest: try rest.map(transform))
+    }
+
+    /// Returns the elements of the collection, sorted using the given predicate as the comparison between elements.
+    public func sort(@noescape isOrderedBefore: (Element, Element) -> Bool) -> OneOrMore<Element> {
+        let sorted: Array = self.sort(isOrderedBefore)
+        return OneOrMore(first: sorted[0], rest: Array(sorted[1 ..< sorted.endIndex]))
     }
     
 }
