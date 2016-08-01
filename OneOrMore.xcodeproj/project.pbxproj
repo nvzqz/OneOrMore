@@ -12,6 +12,7 @@
 		5281CC7A1D4EF7BF00CCB7F1 /* OneOrMore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneOrMore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5281CC871D4EF7C800CCB7F1 /* OneOrMore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneOrMore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5281CC911D4EF86000CCB7F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = OneOrMore.xcodeproj/Info.plist; sourceTree = "<group>"; };
+		5281CC971D4EF98800CCB7F1 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 				5281CC8F1D4EF82000CCB7F1 /* Sources */,
 				5281CC901D4EF85100CCB7F1 /* Support */,
 				5281CC531D4EF77500CCB7F1 /* Products */,
+				5281CC971D4EF98800CCB7F1 /* LICENSE.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -804,6 +806,7 @@
 				5281CC591D4EF77500CCB7F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5281CC651D4EF78100CCB7F1 /* Build configuration list for PBXNativeTarget "OneOrMore iOS" */ = {
 			isa = XCConfigurationList;
@@ -812,6 +815,7 @@
 				5281CC671D4EF78100CCB7F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5281CC7F1D4EF7BF00CCB7F1 /* Build configuration list for PBXNativeTarget "OneOrMore watchOS" */ = {
 			isa = XCConfigurationList;
@@ -820,6 +824,7 @@
 				5281CC811D4EF7BF00CCB7F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5281CC8C1D4EF7C800CCB7F1 /* Build configuration list for PBXNativeTarget "OneOrMore tvOS" */ = {
 			isa = XCConfigurationList;
@@ -828,6 +833,7 @@
 				5281CC8E1D4EF7C800CCB7F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
