@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                      = "OneOrMore"
-    s.version                   = "1.0.0"
+    s.version                   = "1.1.0"
     s.summary                   = "A Swift collection of one or more elements."
     s.homepage                  = "https://github.com/nvzqz/#{s.name}"
     s.license                   = { :type => "MIT", :file => "LICENSE.md" }
