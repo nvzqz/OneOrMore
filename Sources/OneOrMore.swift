@@ -90,7 +90,7 @@ public struct OneOrMore<Element> {
 
 #if swift(>=3)
 
-extension OneOrMore: Collection {
+extension OneOrMore: MutableCollection {
 
     /// Returns the index after `i`.
     public func index(after i: Int) -> Int {
@@ -101,7 +101,7 @@ extension OneOrMore: Collection {
 
 #else
 
-extension OneOrMore: CollectionType {
+extension OneOrMore: MutableCollectionType {
 
     
 }
