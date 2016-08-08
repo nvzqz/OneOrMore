@@ -114,8 +114,8 @@ extension OneOrMore: MutableCollection {
     }
 
     /// Returns the elements of the collection, sorted using the given predicate as the comparison between elements.
-    public func sorted(isOrderedBefore: @noescape (Element, Element) -> Bool) -> OneOrMore<Element> {
-        let sorted: Array = self.sorted(isOrderedBefore: isOrderedBefore)
+    public func sorted(by areInIncreasingOrder: @noescape (Element, Element) -> Bool) -> OneOrMore<Element> {
+        let sorted: Array = self.sorted(by: areInIncreasingOrder)
         return OneOrMore(first: sorted[0], rest: Array(sorted[1 ..< sorted.endIndex]))
     }
 
