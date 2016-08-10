@@ -101,11 +101,16 @@ public struct OneOrMore<Element>: CustomStringConvertible {
 
 #if swift(>=3)
 
-extension OneOrMore: MutableCollection {
+extension OneOrMore: MutableCollection, RandomAccessIndexable {
 
     /// Returns the index after `i`.
     public func index(after i: Int) -> Int {
         return i + 1
+    }
+
+    /// Returns the index before `i`.
+    public func index(before i: Int) -> Int {
+        return i - 1
     }
 
     /// Returns a `OneOrMore` containing the results of mapping the given closure over `self`.
