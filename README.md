@@ -8,6 +8,10 @@
 
 A Swift collection of one or more elements.
 
+A `OneOrMore` instance must have one or more elements. This makes it great for
+tasks such as implementing an undo history. Chris Eidhof outlines a great
+example [here](http://chris.eidhof.nl/post/undo-history-in-swift/).
+
 - [Installation](#installation)
     - [Compatibility](#compatibility)
     - [Swift Package Manager](#install-using-swift-package-manager)
