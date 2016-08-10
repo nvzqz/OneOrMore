@@ -8,6 +8,15 @@
 
 A Swift collection of one or more elements.
 
+- [Installation](#installation)
+    - [Compatibility](#compatibility)
+    - [Swift Package Manager](#install-using-swift-package-manager)
+    - [CocoaPods](#install-using-cocoapods)
+    - [Carthage](#install-using-carthage)
+    - [Manually](#install-manually)
+- [Usage](#usage)
+- [License](#license)
+
 ## Installation
 
 ### Compatibility
