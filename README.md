@@ -27,3 +27,7 @@ let reversed = values.reversed()  // OneOrMore<Int> [6, 4, 2]
 
 let sorted = reversed.sorted(by: <)  // OneOrMore<Int> [2, 4, 6]
 ```
+
+## License
+
+OneOrMore is published under the [MIT License](https://opensource.org/licenses/MIT).
