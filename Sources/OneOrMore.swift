@@ -124,6 +124,12 @@ extension OneOrMore: MutableCollection, RandomAccessIndexable {
         return OneOrMore(first: sorted[0], rest: Array(sorted[1 ..< sorted.endIndex]))
     }
 
+    /// Returns a `OneOrMore<Element>` containing the elements of `self` in reverse order.
+    public func reversed() -> OneOrMore<Element> {
+        let reversed: Array = self.reversed()
+        return OneOrMore(first: reversed[0], rest: Array(reversed[1 ..< reversed.endIndex]))
+    }
+
 }
 
 #else
@@ -140,7 +146,14 @@ extension OneOrMore: MutableCollectionType {
         let sorted: Array = self.sort(isOrderedBefore)
         return OneOrMore(first: sorted[0], rest: Array(sorted[1 ..< sorted.endIndex]))
     }
-    
+
+    /// Returns a `OneOrMore<Element>` containing the elements of `self` in reverse order.
+    public func reverse() -> OneOrMore<Element> {
+        let reversed: ReverseRandomAccessCollection = self.reverse()
+        return OneOrMore(first: reversed[reversed.startIndex],
+                         rest: Array(reversed[reversed.startIndex.successor() ..< reversed.endIndex]))
+    }
+
 }
 
 #endif
