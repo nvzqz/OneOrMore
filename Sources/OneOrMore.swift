@@ -157,3 +157,13 @@ extension OneOrMore: MutableCollectionType {
 }
 
 #endif
+
+/// Returns `true` if these `OneOrMore`s contain the same elements.
+public func == <T: Equatable>(lhs: OneOrMore<T>, rhs: OneOrMore<T>) -> Bool {
+    return lhs.first == rhs.first && lhs.rest == rhs.rest
+}
+
+/// Returns `true` if the `OneOrMore`s do not contain the same elements.
+public func != <T: Equatable>(lhs: OneOrMore<T>, rhs: OneOrMore<T>) -> Bool {
+    return !(lhs == rhs)
+}
