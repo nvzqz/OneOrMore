@@ -132,6 +132,50 @@ extension OneOrMore: MutableCollection, RandomAccessIndexable {
 
 }
 
+extension OneOrMore where Element: Comparable {
+
+    /// Returns the minimum element in the sequence.
+    @warn_unqualified_access
+    public func min() -> Element {
+        if let mininum = rest.min() {
+            return Swift.min(first, mininum)
+        } else {
+            return first
+        }
+    }
+
+    /// Returns the maximum element in the sequence.
+    @warn_unqualified_access
+    public func max() -> Element {
+        if let maximum = rest.max() {
+            return Swift.max(first, maximum)
+        } else {
+            return first
+        }
+    }
+
+    /// Returns the minimum element in the sequence, using the given predicate as the comparison between elements.
+    @warn_unqualified_access
+    public func min(by areInIncreasingOrder: @noescape (Element, Element) throws -> Bool) rethrows -> Element {
+        if let minimum = try rest.min(by: areInIncreasingOrder) {
+            return try areInIncreasingOrder(minimum, first) ? minimum : first
+        } else {
+            return first
+        }
+    }
+
+    /// Returns the maximum element in the sequence, using the given predicate as the comparison between elements.
+    @warn_unqualified_access
+    public func max(by areInIncreasingOrder: @noescape (Element, Element) throws -> Bool) rethrows -> Element {
+        if let maximum = try rest.max(by: areInIncreasingOrder) {
+            return try areInIncreasingOrder(first, maximum) ? maximum : first
+        } else {
+            return first
+        }
+    }
+
+}
+
 #else
 
 extension OneOrMore: MutableCollectionType {
@@ -152,6 +196,50 @@ extension OneOrMore: MutableCollectionType {
         let reversed: ReverseRandomAccessCollection = self.reverse()
         return OneOrMore(first: reversed[reversed.startIndex],
                          rest: Array(reversed[reversed.startIndex.successor() ..< reversed.endIndex]))
+    }
+
+}
+
+extension OneOrMore where Element: Comparable {
+
+    /// Returns the minimum element in `self`.
+    @warn_unused_result
+    public func minElement() -> Element {
+        if let mininum = rest.minElement() {
+            return min(first, mininum)
+        } else {
+            return first
+        }
+    }
+
+    /// Returns the maximum element in `self`.
+    @warn_unused_result
+    public func maxElement() -> Element {
+        if let maximum = rest.maxElement() {
+            return max(first, maximum)
+        } else {
+            return first
+        }
+    }
+
+    /// Returns the minimum element in `self`.
+    @warn_unused_result
+    public func minElement(@noescape isOrderedBefore: (Element, Element) throws -> Bool) rethrows -> Element {
+        if let minimum = try rest.minElement(isOrderedBefore) {
+            return try isOrderedBefore(minimum, first) ? minimum : first
+        } else {
+            return first
+        }
+    }
+
+    /// Returns the maximum element in `self`.
+    @warn_unused_result
+    public func maxElement(@noescape isOrderedBefore: (Element, Element) throws -> Bool) rethrows -> Element {
+        if let maximum = try rest.maxElement(isOrderedBefore) {
+            return try isOrderedBefore(first, maximum) ? maximum : first
+        } else {
+            return first
+        }
     }
 
 }
