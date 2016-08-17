@@ -77,6 +77,56 @@ public struct OneOrMore<Element>: CustomStringConvertible {
         self.init(first: first, rest: rest)
     }
 
+    #if swift(>=3)
+
+    /// Creates an instance from `sequence`.
+    public init?<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
+        if let oneOrMore = sequence as? OneOrMore {
+            self = oneOrMore
+            return
+        }
+        var first: Element? = nil
+        var rest: [Element] = []
+        for element in sequence {
+            if first == nil {
+                first = element
+            } else {
+                rest.append(element)
+            }
+        }
+        guard let realFirst = first else {
+            return nil
+        }
+        self.first = realFirst
+        self.rest = rest
+    }
+
+    #else
+
+    /// Creates an instance from `sequence`.
+    public init?<S: SequenceType where S.Generator.Element == Element>(_ sequence: S) {
+        if let oneOrMore = sequence as? OneOrMore {
+            self = oneOrMore
+            return
+        }
+        var first: Element? = nil
+        var rest: [Element] = []
+        for element in sequence {
+            if first == nil {
+                first = element
+            } else {
+                rest.append(element)
+            }
+        }
+        guard let realFirst = first else {
+            return nil
+        }
+        self.first = realFirst
+        self.rest = rest
+    }
+
+    #endif
+
     /// Accesses the element at the specified position.
     public subscript(position: Int) -> Element {
         @inline(__always)
