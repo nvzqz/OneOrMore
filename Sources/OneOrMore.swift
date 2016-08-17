@@ -114,12 +114,12 @@ extension OneOrMore: MutableCollection, RandomAccessIndexable {
     }
 
     /// Returns a `OneOrMore` containing the results of mapping the given closure over `self`.
-    public func map<T>(_ transform: @noescape (Element) throws -> T) rethrows -> OneOrMore<T> {
+    public func map<T>(_ transform: (Element) throws -> T) rethrows -> OneOrMore<T> {
         return OneOrMore<T>(first: try transform(first), rest: try rest.map(transform))
     }
 
     /// Returns the elements of the collection, sorted using the given predicate as the comparison between elements.
-    public func sorted(by areInIncreasingOrder: @noescape (Element, Element) -> Bool) -> OneOrMore<Element> {
+    public func sorted(by areInIncreasingOrder: (Element, Element) -> Bool) -> OneOrMore<Element> {
         let sorted: Array = self.sorted(by: areInIncreasingOrder)
         return OneOrMore(first: sorted[0], rest: Array(sorted[1 ..< sorted.endIndex]))
     }
@@ -156,7 +156,7 @@ extension OneOrMore where Element: Comparable {
 
     /// Returns the minimum element in the sequence, using the given predicate as the comparison between elements.
     @warn_unqualified_access
-    public func min(by areInIncreasingOrder: @noescape (Element, Element) throws -> Bool) rethrows -> Element {
+    public func min(by areInIncreasingOrder: (Element, Element) throws -> Bool) rethrows -> Element {
         if let minimum = try rest.min(by: areInIncreasingOrder) {
             return try areInIncreasingOrder(minimum, first) ? minimum : first
         } else {
@@ -166,7 +166,7 @@ extension OneOrMore where Element: Comparable {
 
     /// Returns the maximum element in the sequence, using the given predicate as the comparison between elements.
     @warn_unqualified_access
-    public func max(by areInIncreasingOrder: @noescape (Element, Element) throws -> Bool) rethrows -> Element {
+    public func max(by areInIncreasingOrder: (Element, Element) throws -> Bool) rethrows -> Element {
         if let maximum = try rest.max(by: areInIncreasingOrder) {
             return try areInIncreasingOrder(first, maximum) ? maximum : first
         } else {
