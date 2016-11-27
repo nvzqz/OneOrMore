@@ -1,6 +1,6 @@
 # OneOrMore
 
-[![Swift 2.2 | 3.0](https://img.shields.io/badge/swift-2.2%20%7C%203.0-orange.svg)](https://developer.apple.com/swift/)
+[![Swift 3.0](https://img.shields.io/badge/swift-3.0-orange.svg)](https://developer.apple.com/swift/)
 ![Platforms](https://img.shields.io/badge/platform-ios%20%7C%20macos%20%7C%20watchos%20%7C%20tvos%20%7C%20linux-lightgrey.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/v/OneOrMore.svg)](https://cocoapods.org/pods/OneOrMore)
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -31,8 +31,8 @@ example [here](http://chris.eidhof.nl/post/undo-history-in-swift/).
     - watchOS 2.0+
     - tvOS 9.0+
     - Linux
-- Xcode 7.3 and 8.0 beta 4
-- Swift 2.2 and 3.0 preview 4
+- Xcode 8.0
+- Swift 3.0
 
 ### Install Using Swift Package Manager
 The [Swift Package Manager](https://swift.org/package-manager/) is a
