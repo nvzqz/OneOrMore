@@ -108,6 +108,20 @@ public struct OneOrMore<Element>: CustomStringConvertible {
 
 }
 
+extension OneOrMore: ExpressibleByArrayLiteral {
+
+    /// Creates an instance initialized with the given elements.
+    ///
+    /// - warning: Causes a runtime error if `elements` is empty.
+    public init(arrayLiteral elements: Element...) {
+        guard let oneOrMore = OneOrMore(elements) else {
+            fatalError("Could not create OneOrMore from \(elements)")
+        }
+        self = oneOrMore
+    }
+
+}
+
 extension OneOrMore: MutableCollection, RandomAccessIndexable {
 
     /// Returns the index after `i`.
