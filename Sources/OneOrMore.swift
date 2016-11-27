@@ -77,30 +77,29 @@ public struct OneOrMore<Element>: CustomStringConvertible {
         self = other
     }
 
-    private init?<C: Collection>(_collection: C) where C.Iterator.Element == Element, C.SubSequence.Iterator.Element == Element, C.Index == Int {
-        guard let first = _collection.first else {
-            return nil
-        }
-        self.first = first
-        self.rest  = Array(_collection.suffix(from: 1))
-    }
-
     /// Creates an instance from `sequence`.
     public init?<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
         if let oneOrMore = sequence as? OneOrMore {
             self.init(oneOrMore)
-        } else if let array = sequence as? [Element] {
-            self.init(_collection: array)
-        } else if let array = sequence as? ContiguousArray<Element> {
-            self.init(_collection: array)
-        } else if let slice = sequence as? ArraySlice<Element> {
-            self.init(_collection: slice)
         } else {
             var iterator = sequence.makeIterator()
             guard let first = iterator.next() else {
                 return nil
             }
             self.init(first: first, rest: Array(IteratorSequence(iterator)))
+        }
+    }
+
+    /// Creates an instance from `collection`.
+    public init?<C: Collection>(_ collection: C) where C.Iterator.Element == Element, C.SubSequence.Iterator.Element == Element {
+        if let oneOrMore = collection as? OneOrMore {
+            self.init(oneOrMore)
+        } else {
+            guard let first = collection.first else {
+                return nil
+            }
+            let rest = collection.suffix(from: collection.index(after: collection.startIndex))
+            self.init(first: first, rest: Array(rest))
         }
     }
 
