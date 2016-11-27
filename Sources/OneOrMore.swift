@@ -53,12 +53,7 @@ public struct OneOrMore<Element>: CustomStringConvertible {
     /// A textual representation of this instance.
     public var description: String {
         let elements = lazy.map(String.init(reflecting:))
-        #if swift(>=3)
-            let joined = elements.joined(separator: ", ")
-        #else
-            let joined = elements.joinWithSeparator(", ")
-        #endif
-        return "[\(joined)]"
+        return "[" + elements.joined(separator: ", ") + "]"
     }
 
     /// Creates an instance with `first` and `rest`.
@@ -76,8 +71,6 @@ public struct OneOrMore<Element>: CustomStringConvertible {
     public init(_ first: Element, _ rest: Element...) {
         self.init(first: first, rest: rest)
     }
-
-    #if swift(>=3)
 
     /// Creates an instance from `sequence`.
     public init?<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
@@ -101,32 +94,6 @@ public struct OneOrMore<Element>: CustomStringConvertible {
         self.rest = rest
     }
 
-    #else
-
-    /// Creates an instance from `sequence`.
-    public init?<S: SequenceType where S.Generator.Element == Element>(_ sequence: S) {
-        if let oneOrMore = sequence as? OneOrMore {
-            self = oneOrMore
-            return
-        }
-        var first: Element? = nil
-        var rest: [Element] = []
-        for element in sequence {
-            if first == nil {
-                first = element
-            } else {
-                rest.append(element)
-            }
-        }
-        guard let realFirst = first else {
-            return nil
-        }
-        self.first = realFirst
-        self.rest = rest
-    }
-
-    #endif
-
     /// Accesses the element at the specified position.
     public subscript(position: Int) -> Element {
         @inline(__always)
@@ -148,8 +115,6 @@ public struct OneOrMore<Element>: CustomStringConvertible {
     }
 
 }
-
-#if swift(>=3)
 
 extension OneOrMore: MutableCollection, RandomAccessIndexable {
 
@@ -225,76 +190,6 @@ extension OneOrMore where Element: Comparable {
     }
 
 }
-
-#else
-
-extension OneOrMore: MutableCollectionType {
-
-    /// Returns a `OneOrMore` containing the results of mapping the given closure over `self`.
-    public func map<T>(@noescape transform: (Element) throws -> T) rethrows -> OneOrMore<T> {
-        return OneOrMore<T>(first: try transform(first), rest: try rest.map(transform))
-    }
-
-    /// Returns the elements of the collection, sorted using the given predicate as the comparison between elements.
-    public func sort(@noescape isOrderedBefore: (Element, Element) -> Bool) -> OneOrMore<Element> {
-        let sorted: Array = self.sort(isOrderedBefore)
-        return OneOrMore(first: sorted[0], rest: Array(sorted[1 ..< sorted.endIndex]))
-    }
-
-    /// Returns a `OneOrMore<Element>` containing the elements of `self` in reverse order.
-    public func reverse() -> OneOrMore<Element> {
-        let reversed: ReverseRandomAccessCollection = self.reverse()
-        return OneOrMore(first: reversed[reversed.startIndex],
-                         rest: Array(reversed[reversed.startIndex.successor() ..< reversed.endIndex]))
-    }
-
-}
-
-extension OneOrMore where Element: Comparable {
-
-    /// Returns the minimum element in `self`.
-    @warn_unused_result
-    public func minElement() -> Element {
-        if let mininum = rest.minElement() {
-            return min(first, mininum)
-        } else {
-            return first
-        }
-    }
-
-    /// Returns the maximum element in `self`.
-    @warn_unused_result
-    public func maxElement() -> Element {
-        if let maximum = rest.maxElement() {
-            return max(first, maximum)
-        } else {
-            return first
-        }
-    }
-
-    /// Returns the minimum element in `self`.
-    @warn_unused_result
-    public func minElement(@noescape isOrderedBefore: (Element, Element) throws -> Bool) rethrows -> Element {
-        if let minimum = try rest.minElement(isOrderedBefore) {
-            return try isOrderedBefore(minimum, first) ? minimum : first
-        } else {
-            return first
-        }
-    }
-
-    /// Returns the maximum element in `self`.
-    @warn_unused_result
-    public func maxElement(@noescape isOrderedBefore: (Element, Element) throws -> Bool) rethrows -> Element {
-        if let maximum = try rest.maxElement(isOrderedBefore) {
-            return try isOrderedBefore(first, maximum) ? maximum : first
-        } else {
-            return first
-        }
-    }
-
-}
-
-#endif
 
 /// Returns `true` if these `OneOrMore`s contain the same elements.
 public func == <T: Equatable>(lhs: OneOrMore<T>, rhs: OneOrMore<T>) -> Bool {
