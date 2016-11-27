@@ -76,22 +76,14 @@ public struct OneOrMore<Element>: CustomStringConvertible {
     public init?<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
         if let oneOrMore = sequence as? OneOrMore {
             self = oneOrMore
-            return
-        }
-        var first: Element? = nil
-        var rest: [Element] = []
-        for element in sequence {
-            if first == nil {
-                first = element
-            } else {
-                rest.append(element)
+        } else {
+            var iterator = sequence.makeIterator()
+            guard let first = iterator.next() else {
+                return nil
             }
+            self.first = first
+            self.rest  = Array(IteratorSequence(iterator))
         }
-        guard let realFirst = first else {
-            return nil
-        }
-        self.first = realFirst
-        self.rest = rest
     }
 
     /// Accesses the element at the specified position.
