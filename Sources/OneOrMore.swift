@@ -155,6 +155,11 @@ extension OneOrMore: MutableCollection, RandomAccessIndexable {
 
 extension OneOrMore where Element: Comparable {
 
+    /// Returns the elements of the collection, sorted.
+    public func sorted() -> OneOrMore {
+        return sorted(by: <)
+    }
+
     /// Returns the minimum element in the sequence.
     @warn_unqualified_access
     public func min() -> Element {
