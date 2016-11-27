@@ -72,17 +72,21 @@ public struct OneOrMore<Element>: CustomStringConvertible {
         self.init(first: first, rest: rest)
     }
 
+    /// Creates an instance from `other`.
+    public init(_ other: OneOrMore) {
+        self = other
+    }
+
     /// Creates an instance from `sequence`.
     public init?<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
         if let oneOrMore = sequence as? OneOrMore {
-            self = oneOrMore
+            self.init(oneOrMore)
         } else {
             var iterator = sequence.makeIterator()
             guard let first = iterator.next() else {
                 return nil
             }
-            self.first = first
-            self.rest  = Array(IteratorSequence(iterator))
+            self.init(first: first, rest: Array(IteratorSequence(iterator)))
         }
     }
 
