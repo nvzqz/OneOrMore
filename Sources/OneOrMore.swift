@@ -82,11 +82,7 @@ public struct OneOrMore<Element>: CustomStringConvertible {
         if let oneOrMore = sequence as? OneOrMore {
             self.init(oneOrMore)
         } else {
-            var iterator = sequence.makeIterator()
-            guard let first = iterator.next() else {
-                return nil
-            }
-            self.init(first: first, rest: Array(IteratorSequence(iterator)))
+            self.init(iterator: sequence.makeIterator())
         }
     }
 
@@ -101,6 +97,15 @@ public struct OneOrMore<Element>: CustomStringConvertible {
             let rest = collection.suffix(from: collection.index(after: collection.startIndex))
             self.init(first: first, rest: Array(rest))
         }
+    }
+
+    /// Creates an instance from `iterator`.
+    public init?<I: IteratorProtocol>(iterator: I) where I.Element == Element {
+        var iterator = iterator
+        guard let first = iterator.next() else {
+            return nil
+        }
+        self.init(first: first, rest: Array(IteratorSequence(iterator)))
     }
 
     /// Accesses the element at the specified position.
